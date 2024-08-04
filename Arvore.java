@@ -36,36 +36,60 @@ public class Arvore {
         }
     }
 
-    public void remove(){
-        No descida = raiz;
-        No descida2 = raiz;
-        int count = 0;
+    public void removeMenor() {
+        if (raiz == null) {
+            return;
+        }
 
-        while(descida != null){
-            if(descida.getEsquerda() != null){
-                descida = descida.getEsquerda();
-                count ++;
-            }
-            descida = null;
+        if(raiz.getEsquerda() == null){
+            raiz = raiz.getDireita();
+            return;
         }
         
-        if(count == 1){
-            descida2.setEsquerda(null);
-            return;
+        No pai = null;
+        No descida = raiz;
+        
+        while (descida.getEsquerda() != null) {
+            pai = descida;
+            descida = descida.getEsquerda();
         }
-
-        for(int i = 0; i < count; i++){
-            descida2 = descida2.getEsquerda();
+        
+        if (pai == null) {
+            raiz = descida.getDireita();
+        } else {
+            pai.setEsquerda(descida.getDireita());
         }
-
-        No ultimo = descida2.getEsquerda();
-        if(ultimo.getDireita() != null){
-            descida2.setEsquerda(ultimo.getDireita());
-            return;
-        }
-        descida2.setEsquerda(null);
     }
+    
 
+
+    public void removeMaior(){
+        if (raiz == null) {
+            return;
+        }
+
+        if(raiz.getDireita() == null){
+            raiz = raiz.getEsquerda();
+            return;
+        }
+
+        No pai = null;
+        No descida = raiz;
+
+        while (descida.getDireita() != null) {
+            pai = descida;
+            descida = descida.getDireita();
+        }
+        
+        if (pai == null) {
+            raiz = descida.
+            getEsquerda();
+        } else {
+            pai.setDireita(descida.getEsquerda());
+        }
+
+        
+    }
 
     public No getRaiz() {
         return raiz;
@@ -78,6 +102,4 @@ public class Arvore {
     public void print(){
         System.out.println(raiz);
     }
-
-
 }

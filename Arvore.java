@@ -91,6 +91,19 @@ public class Arvore {
         
     }
 
+    public No busca(int dado, No raiz){
+        if(raiz != null){
+            if(raiz.getDado() == dado){
+                return raiz;
+            }     
+            if(dado < raiz.getDado()){
+                return busca(dado, raiz.getEsquerda());
+            } 
+            return busca(dado, raiz.getDireita());
+        }
+        return null;
+    }
+
     public No getRaiz() {
         return raiz;
     }
